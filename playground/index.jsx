@@ -12,9 +12,9 @@ import Mention, { defaultSuggestionsFilter } from '../src/mention'
 
 
 BraftEditor.use(Table({
-  defaultColumns: 4,
-  defaultRows: 5,
-  withDropdown: true,
+  defaultColumns: 3,
+  defaultRows: 3,
+  withDropdown: false,
   columnResizable: true,
   exportAttrString: 'border="1" style="border-collapse: collapse"'
 }))
@@ -72,7 +72,7 @@ class Demo extends React.Component {
     super(props)
 
     this.state = {
-      editorState: BraftEditor.createEditorState(tableStr3),
+      editorState: BraftEditor.createEditorState(''),
       suggestions: mentions
     }
   }
@@ -110,10 +110,10 @@ class Demo extends React.Component {
             value={editorState}
             contentStyle={{ height: 700 }}
           />
-            <MentionSuggestions
+            {/* <MentionSuggestions
                 suggestions={this.state.suggestions}
                 onSearchChange={this.onSearchChange}
-            />
+            /> */}
         </div>
       </div>
     )

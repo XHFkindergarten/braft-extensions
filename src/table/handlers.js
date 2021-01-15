@@ -20,13 +20,19 @@ export const handleKeyCommand = (oringeHandler) => (command, editorState, editor
     if (focusOffset === 0) {
       const currentBlock = ContentUtils.getSelectionBlock(editorState)
       const beforeBlock = contentState.getBlockBefore(currentBlock.getKey())
-      if (!beforeBlock) return 'not-handled'
-      if ('table-cell' === beforeBlock.getType()) {
-        // 当前行 之前是表格的情况 特殊处理
-        const tableKey = beforeBlock.getData().get('tableKey')
-        editor.setValue(TableUtils.removeTable(editorState, tableKey))
-        return 'handled'
-      }
+      /**
+       * @question 为什么不返回 null 呢
+       */
+      if (beforeBlock === undefined) return 'not-handled'
+      // if ('table-cell' === beforeBlock.getType()) {
+      //   // 当前行 之前是表格的情况 特殊处理
+      //   const tableKey = beforeBlock.getData().get('tableKey')
+      //   editor.setValue(TableUtils.removeTable(editorState, tableKey))
+      //   return 'handled'
+      // }
+
+      // 不返回值，直接执行原生的退格操作
+
     }
   }
 
